@@ -1,0 +1,3 @@
+<p><%= @category.name %>の詳細</p>
+<p><%= link_to edit_category_url do %>EDIT<% end %></p>
+<p><%= link_to 'このカテゴリを削除する', @category, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></p>

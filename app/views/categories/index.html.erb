@@ -1,0 +1,12 @@
+<hi>カテゴリ一覧</hi>
+
+
+<ul>
+    <% @categories.each do |category| %>
+        <li><%= link_to category do %><%= category.name %><% end %></li>
+    <% end %>
+<ul>
+
+
+
+<%= link_to '新規カテゴリの投稿', new_category_path %>

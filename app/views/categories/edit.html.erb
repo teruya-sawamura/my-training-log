@@ -1,0 +1,6 @@
+<%= form_with(model: @category, local: true) do |f| %>
+  <%= f.label :name, 'カテゴリ' %>
+  <%= f.text_field :name %>
+
+  <%= f.submit '変更' %>
+<% end %>
