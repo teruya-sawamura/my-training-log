@@ -1,0 +1,22 @@
+<h1>Training#index</h1>
+
+<ul>
+    <% @trainings.each do |training| %>
+        <li><%= training.content %></li>
+        <li><%= training.time %></li>
+        <li><%= training.date %></li>
+    <% end %>
+</ul>
+
+
+<%= form_with(model: @training, local: true) do |f| %>
+  <%= f.label :content, '内容' %>
+  <%= f.text_field :content %>
+  
+  <%= f.label :time, '時間' %>
+  <%= f.text_field :time %>
+
+  <%= f.submit '新規作成' %>
+<% end %>
+
+

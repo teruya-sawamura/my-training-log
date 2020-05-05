@@ -7,6 +7,19 @@ class CategoriesController < ApplicationController
   
   def show
     @category = Category.find(params[:id])
+    
+    @trainings = @category.trainings.all
+    # @training = @category.trainings.build
+    # if @training.save
+    #   flash[:success] = "登録完了"
+    #   redirect_to category
+    # else
+    #   flash[:danger] = "登録失敗"
+    #   render :show
+    # end
+    
+    # @category = Category.find(params[:category_id])
+    @training = Training.new
   end
   
   def new
@@ -53,6 +66,8 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
   
-  
+  # def training_params
+  #   params.permit(:content, :time, :date)
+  # end
   
 end

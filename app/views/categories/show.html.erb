@@ -1,3 +1,25 @@
 <p><%= @category.name %>の詳細</p>
+
+<% @trainings.each do |training| %>
+  <ul>
+    <li><%= training.content %></li>
+    <li><%= training.time %></li>
+  </ul>
+<% end %>
+
+
+<%= form_with(model: [@category, @training], local: true) do |f| %>
+  <%= f.label :content, '内容' %>
+  <%= f.text_field :content %>
+  
+  <%= f.label :time, '時間' %>
+  <%= f.number_field :time %>
+
+  <%= f.submit '新規作成' %>
+<% end %>
+
+
+
+<p><%= link_to 'NEW TRAINING', new_category_training_path(@category) %></p>
 <p><%= link_to edit_category_url do %>EDIT<% end %></p>
 <p><%= link_to 'このカテゴリを削除する', @category, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></p>

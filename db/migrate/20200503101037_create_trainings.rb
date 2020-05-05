@@ -4,7 +4,7 @@ class CreateTrainings < ActiveRecord::Migration[5.2]
       t.date :date
       t.string :content
       t.float :time
-      t.references :category
+      t.references :category, foreign_key: true
 
       t.timestamps
     end
