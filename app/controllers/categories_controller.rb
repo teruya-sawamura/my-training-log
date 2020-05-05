@@ -1,5 +1,10 @@
 class CategoriesController < ApplicationController
   
+  # require date
+  # day = DateTime.now
+  # str = day.strftime("%Y-%m-%d %H:%M:%S")
+  # post_day
+  
   def index
     @categories = Category.all
     # @category = Category.find(params[:id])
@@ -8,7 +13,25 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     
-    @trainings = @category.trainings.all
+    
+    # @trainings = @category.trainings.where(created_at: Date.today.all_day)
+    t = Time.now
+    tt = t.strftime("%H%M%S")
+    ttt = tt.to_i
+    if ttt > 150000 && ttt < 235959
+      @trainings = @category.trainings.where("created_at between '#{Date.today} 15:00:00' and '#{Date.tomorrow} 14:59:59'")
+    elsif ttt < 145959
+      @trainings = @category.trainings.where("created_at between '#{Date.yesterday} 15:00:00' and '#{Date.today} 14:59:59'")
+    end
+    
+    n = ttt + 90000
+    if n >= 240000
+      @training_day = Date.tomorrow
+    else
+      @training_day = Date.today
+    end
+    
+    
     # @training = @category.trainings.build
     # if @training.save
     #   flash[:success] = "登録完了"

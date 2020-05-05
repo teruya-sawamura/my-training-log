@@ -1,5 +1,7 @@
 <p><%= @category.name %>の詳細</p>
 
+<p><%= @training_day %>の積み上げ</p>
+
 <% @trainings.each do |training| %>
   <ul>
     <li><%= training.content %></li>
@@ -14,6 +16,8 @@
   
   <%= f.label :time, '時間' %>
   <%= f.number_field :time %>
+  
+  <%= hidden_field_tag :date, @training.date %>
 
   <%= f.submit '新規作成' %>
 <% end %>
