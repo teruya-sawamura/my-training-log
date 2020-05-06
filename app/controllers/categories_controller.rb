@@ -1,48 +1,57 @@
 class CategoriesController < ApplicationController
   
-  # require date
-  # day = DateTime.now
-  # str = day.strftime("%Y-%m-%d %H:%M:%S")
-  # post_day
-  
   def index
     @categories = Category.all
-    # @category = Category.find(params[:id])
   end
   
   def show
     @category = Category.find(params[:id])
+    @training = Training.new
     
-    
-    # @trainings = @category.trainings.where(created_at: Date.today.all_day)
-    t = Time.now
-    tt = t.strftime("%H%M%S")
-    ttt = tt.to_i
-    if ttt > 150000 && ttt < 235959
-      @trainings = @category.trainings.where("created_at between '#{Date.today} 15:00:00' and '#{Date.tomorrow} 14:59:59'")
-    elsif ttt < 145959
-      @trainings = @category.trainings.where("created_at between '#{Date.yesterday} 15:00:00' and '#{Date.today} 14:59:59'")
-    end
-    
-    n = ttt + 90000
-    if n >= 240000
+    # --------当日の投稿内容表示--------
+    @trainings = @category.trainings.where(created_at: Time.current.all_day)
+    # ----------------------------------
+
+    #--------「xx年xx月xx日」の計算--------
+    t = Time.now.strftime("%H%M%S").to_i + 90000
+    if t >= 240000
       @training_day = Date.tomorrow
     else
       @training_day = Date.today
     end
+    #--------------------------------------
+    
+    # --------本日の合計時間--------
+    @today_total = 0
+    @trainings.each do |train|
+      s = train.time
+      @today_total += s
+    end
+    @today_total
+    # ------------------------------
+    
+    # --------トータルの合計時間--------
+    @total_trainings = @category.trainings.all
+    @all_total = 0
+    @total_trainings.each do |total_train|
+      u = total_train.time
+      @all_total += u
+    end
+    @all_total
+    # ----------------------------------
+    
+    # --------今月の合計時間--------
+    @month_trainings = @category.trainings.where(created_at: Time.current.all_month)
+    @month_total = 0
+    @month_trainings.each do |month_train|
+      v = month_train.time
+      @month_total += v
+    end
+    @month_total
+    # ------------------------------
     
     
-    # @training = @category.trainings.build
-    # if @training.save
-    #   flash[:success] = "登録完了"
-    #   redirect_to category
-    # else
-    #   flash[:danger] = "登録失敗"
-    #   render :show
-    # end
     
-    # @category = Category.find(params[:category_id])
-    @training = Training.new
   end
   
   def new

@@ -4,6 +4,7 @@
 
 <% @trainings.each do |training| %>
   <ul>
+    <li><%= link_to edit_category_training_path(@category, training) do %><i class="fas fa-check-square"></i><% end %></li>
     <li><%= training.content %></li>
     <li><%= training.time %></li>
   </ul>
@@ -22,6 +23,10 @@
   <%= f.submit '新規作成' %>
 <% end %>
 
+
+<p>today_total:<%= @today_total %></p>
+<p>all_total:<%= @all_total %></p>
+<p>month_total:<%= @month_total %></p>
 
 
 <p><%= link_to 'NEW TRAINING', new_category_training_path(@category) %></p>

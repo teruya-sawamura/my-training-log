@@ -1,2 +1,15 @@
 <h1>Training#edit</h1>
 <p>Find me in app/views/training/edit.html.erb</p>
+
+
+<%= form_with(model: [@category, @training], local: true) do |f| %>
+  <%= f.label :content, '内容' %>
+  <%= f.text_field :content %>
+  
+  <%= f.label :time, '時間' %>
+  <%= f.number_field :time %>
+
+  <%= f.submit 'EDIT' %>
+<% end %>
+
+<%= link_to category_training_path(@category, @training), method: :delete, data: { confirm: "削除しますか?" } do %>DELETE<% end %>
