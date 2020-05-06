@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @training = Training.new
-    
+
     # --------当日の投稿内容表示--------
     @trainings = @category.trainings.where(created_at: Time.current.all_day)
     # ----------------------------------
@@ -49,9 +49,7 @@ class CategoriesController < ApplicationController
     end
     @month_total
     # ------------------------------
-    
-    
-    
+
   end
   
   def new

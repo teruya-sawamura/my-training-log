@@ -5,6 +5,8 @@ class TrainingsController < ApplicationController
   end
 
   def show
+    @category = Category.find(params[:category_id])
+    @training = @category.trainings.find(params[:id])
   end
 
   def new

@@ -18,7 +18,7 @@
   <%= f.label :time, '時間' %>
   <%= f.number_field :time %>
   
-  <%= hidden_field_tag :date, @training.date %>
+  <%= hidden_field_tag :date, @training_date %>
 
   <%= f.submit '新規作成' %>
 <% end %>
@@ -27,6 +27,9 @@
 <p>today_total:<%= @today_total %></p>
 <p>all_total:<%= @all_total %></p>
 <p>month_total:<%= @month_total %></p>
+
+
+
 
 
 <p><%= link_to 'NEW TRAINING', new_category_training_path(@category) %></p>
