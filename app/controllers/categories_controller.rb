@@ -1,24 +1,38 @@
 class CategoriesController < ApplicationController
   
   def index
-    @categories = Category.all
+     @categories = Category.all
   end
   
   def show
     @category = Category.find(params[:id])
     @training = Training.new
+    
+    
+    # @category_a = Category.find(params[:id])
+    @search = @category.trainings.ransack(params[:q])
+
+    @search_trainings = 
+      # if params[:q].blank?
+      #   Training.none.search
+      # else  
+        @search.result(distinct: true)
+      # end
+    
+    
+    
 
     # --------当日の投稿内容表示--------
     @trainings = @category.trainings.where(created_at: Time.current.all_day)
     # ----------------------------------
 
     #--------「xx年xx月xx日」の計算--------
-    t = Time.now.strftime("%H%M%S").to_i + 90000
-    if t >= 240000
-      @training_day = Date.tomorrow
-    else
-      @training_day = Date.today
-    end
+    # t = Time.now.strftime("%H%M%S").to_i + 90000
+    # if t >= 240000
+      @training_day = Date.current
+    # else
+    #   @training_day = Date.today
+    # end
     #--------------------------------------
     
     # --------本日の合計時間--------
@@ -49,6 +63,13 @@ class CategoriesController < ApplicationController
     end
     @month_total
     # ------------------------------
+    # @ttraining = Training.find(params[:id])
+    @search_category = Category.find(params[:id])
+    @search = @search_category.trainings.ransack(params[:q])
+    @search_trainings = @search.result
+    
+    
+
 
   end
   

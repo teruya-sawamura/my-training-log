@@ -1,7 +1,15 @@
 class TrainingsController < ApplicationController
   def index
-    @category = Category.find(params[:id])
-    @trainings = @category.training.all
+    @category = Category.find(params[:category_id])
+    @search = @category.trainings.ransack(params[:q])
+
+    @search_trainings = 
+      # if params[:q].blank?
+      #   Training.none
+      # else  
+        @search.result(distinct: true)
+      # end
+      
   end
 
   def show

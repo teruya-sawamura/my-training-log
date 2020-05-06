@@ -1,22 +1,24 @@
 <h1>Training#index</h1>
 
-<ul>
-    <% @trainings.each do |training| %>
-        <li><%= training.content %></li>
-        <li><%= training.time %></li>
-        <li><%= training.date %></li>
-    <% end %>
-</ul>
 
-
-<%= form_with(model: @training, local: true) do |f| %>
-  <%= f.label :content, '内容' %>
-  <%= f.text_field :content %>
+<%= search_form_for @search, url: "trainings#index"  do |f| %>
+  <%= f.label :created_at, "日付" %>
+  <%= f.search_field :created_at_eq, :placeholder => "20XX-XX-XX" %>
   
-  <%= f.label :time, '時間' %>
-  <%= f.text_field :time %>
-
-  <%= f.submit '新規作成' %>
+  <%= f.submit "検索" %>
 <% end %>
+
+
+
+    <ul>
+      <% @search_trainings.each do |search_training| %>
+        <li><%= search_training.content =%></li>
+        <li><%= search_training.time =%></li>
+      <% end %>
+    </ul>
+
+    
+
+
 
 

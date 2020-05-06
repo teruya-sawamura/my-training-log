@@ -18,7 +18,7 @@
   <%= f.label :time, '時間' %>
   <%= f.number_field :time %>
   
-  <%= hidden_field_tag :date, @training_date %>
+  
 
   <%= f.submit '新規作成' %>
 <% end %>
@@ -30,8 +30,19 @@
 
 
 
+<%= search_form_for @search, url: category_trainings_path(@category.id)  do |f| %>
+  <%= f.label :created_at, "日付" %>
+  <%= f.search_field :created_at_eq, :placeholder => "20XX-XX-XX" %>
+  
+  <%= f.submit "検索" %>
+<% end %>
 
 
-<p><%= link_to 'NEW TRAINING', new_category_training_path(@category) %></p>
+
+   
+
+
+
+<p><%= link_to 'SEARCH TRAINING', category_trainings_path(@category) %></p>
 <p><%= link_to edit_category_url do %>EDIT<% end %></p>
 <p><%= link_to 'このカテゴリを削除する', @category, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></p>
