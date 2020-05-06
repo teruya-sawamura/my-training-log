@@ -2,8 +2,8 @@
 
 
 <%= search_form_for @search, url: "trainings#index"  do |f| %>
-  <%= f.label :created_at, "日付" %>
-  <%= f.search_field :created_at_eq, :placeholder => "20XX-XX-XX" %>
+  <%= f.label :date, "日付" %>
+  <%= f.search_field :date_eq, :placeholder => "20XX-XX-XX" %>
   
   <%= f.submit "検索" %>
 <% end %>

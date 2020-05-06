@@ -4,11 +4,11 @@ class TrainingsController < ApplicationController
     @search = @category.trainings.ransack(params[:q])
 
     @search_trainings = 
-      # if params[:q].blank?
-      #   Training.none
-      # else  
+      if params[:q].blank?
+        Training.none.search
+      else  
         @search.result(distinct: true)
-      # end
+      end
       
   end
 

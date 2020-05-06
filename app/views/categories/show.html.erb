@@ -18,7 +18,7 @@
   <%= f.label :time, '時間' %>
   <%= f.number_field :time %>
   
-  
+  <%= f.hidden_field :date, :value => Date.current %>
 
   <%= f.submit '新規作成' %>
 <% end %>
@@ -31,15 +31,13 @@
 
 
 <%= search_form_for @search, url: category_trainings_path(@category.id)  do |f| %>
-  <%= f.label :created_at, "日付" %>
-  <%= f.search_field :created_at_eq, :placeholder => "20XX-XX-XX" %>
+  <%= f.label :date, "日付" %>
+  <%= f.search_field :date_eq, :placeholder => "20XX-XX-XX" %>
   
   <%= f.submit "検索" %>
 <% end %>
 
 
-
-   
 
 
 
