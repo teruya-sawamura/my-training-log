@@ -12,11 +12,11 @@
                 <%= f.number_field :time, step: "10", class:"col-sm-7 col-7 no-gutters", :placeholder => "min" %>
                 <%= f.label :date, class:"col-sm-4 col-4 no-gutters" "Date" %>
                 <%= f.date_field :date, class:"col-sm-7 col-7 no-gutters", :placeholder => "20XX-XX-XX" %>
-                <div class="edit-training-btn pr-sm-4"><%= f.submit 'add', class:"col-sm-5 col-11 no-gutters" %></div>
+                <div class="edit-training-btn pr-sm-4"><%= f.submit 'edit', class:"col-sm-5 col-11 no-gutters" %></div>
             <% end %>
         </div>
         <div class="back-link">
-            <%= link_to 'back', category_path(@category), class:"" %>
+            <%= link_to 'back', category_path(@category) %>
         </div>
     </div>
 </div>

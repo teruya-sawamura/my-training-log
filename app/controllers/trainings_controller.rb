@@ -9,7 +9,6 @@ class TrainingsController < ApplicationController
       else  
         @search.result(distinct: true)
       end
-      
   end
 
   def show
@@ -17,20 +16,15 @@ class TrainingsController < ApplicationController
     @training = @category.trainings.find(params[:id])
   end
 
-  def new
-    # @category = Category.find(params[:category_id])
-    # @training = Training.new
-  end
-
   def create
     @training = Training.new(training_params)
     @category = Category.find(params[:category_id])
     @training.category_id = @category.id
     if @training.save
-      flash[:success] = "登録完了"
+      flash[:success] = "Entry new training!"
       redirect_to @category
     else
-      flash[:danger] = "登録失敗"
+      flash[:danger] = "Failed..."
       redirect_to @category
     end
   end
@@ -44,10 +38,10 @@ class TrainingsController < ApplicationController
     @category = Category.find(params[:category_id])
     @training = @category.trainings.find(params[:id])
     if @training.update(training_params)
-      flash[:success] = "内容を変更しました。"
+      flash[:success] = "Edit training!"
       redirect_to @category
     else
-      flash[:danger] = "変更に失敗しました。"
+      flash[:danger] = "Failed..."
       render :edit
     end
   end
@@ -56,7 +50,7 @@ class TrainingsController < ApplicationController
     @category = Category.find(params[:category_id])
     @training = @category.trainings.find(params[:id])
     @training.delete
-    flash[:success] = "削除しました。"
+    flash[:success] = "Delete training!"
     redirect_to @category
   end
   

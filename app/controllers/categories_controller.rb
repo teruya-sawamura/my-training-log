@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
   
   def index
      @categories = Category.all
-    # @category = Category.find(params[:id])
   end
   
   def show
@@ -12,11 +11,7 @@ class CategoriesController < ApplicationController
     # --------Ransack用アクション--------
     @search = @category.trainings.ransack(params[:q])
     @search_trainings = 
-      # if params[:q].blank?
-      #   Training.none.search
-      # else  
-        @search.result(distinct: true)
-      # end
+    @search.result(distinct: true)
     # -----------------------------------
     
     # --------当日の投稿内容表示--------
@@ -24,12 +19,7 @@ class CategoriesController < ApplicationController
     # ----------------------------------
 
     #--------「xx年xx月xx日」の計算--------
-    # t = Time.now.strftime("%H%M%S").to_i + 90000
-    # if t >= 240000
       @training_day = Date.current
-    # else
-    #   @training_day = Date.today
-    # end
     #--------------------------------------
     
     # --------本日の合計時間--------
@@ -62,16 +52,11 @@ class CategoriesController < ApplicationController
     end
     @month_total_hour = vv / 60
     @month_total_min = vv % 60
-    
     # ------------------------------
-    # @ttraining = Training.find(params[:id])
+    
     @search_category = Category.find(params[:id])
     @search = @search_category.trainings.ransack(params[:q])
     @search_trainings = @search.result
-    
-    
-
-
   end
   
   def new
@@ -81,10 +66,10 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = "カテゴリを登録しました。"
+      flash[:success] = "Create new category!"
       redirect_to root_url
     else
-      flash[:danger] = "カテゴリ登録に失敗しました。"
+      flash[:danger] = "Failed..."
       render :new
     end
   end
@@ -96,10 +81,10 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      flash[:success] = "カテゴリを変更しました。"
+      flash[:success] = "Edit category!"
       redirect_to @category
     else
-      flash[:danger] = "カテゴリの変更に失敗しました。"
+      flash[:danger] = "Failed..."
       render :edit
     end
   end
@@ -107,7 +92,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.delete
-    flash[:success] = "カテゴリを削除しました。"
+    flash[:success] = "Delete category!"
     redirect_to root_url
   end
   

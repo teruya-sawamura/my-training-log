@@ -3,8 +3,6 @@
 body {
     background-color: #FAFAFA;
     color: #565656;
-    /*max-width: 100%;*/
-    /*max-height: 100%;*/
 }
 
 a {
@@ -45,11 +43,7 @@ button, input {
 /*------------------------------------*/
 
 
-/*navbar----------------------------*/
-
-header {
-    /*margin-bottom: 15%;*/
-}
+/*navbar------------------------------*/
 
 .navbar-all {
     background-color: #1794ac;
@@ -62,7 +56,6 @@ header {
 }
 
 .navbar-brand:hover{
-    /*opacity:3;*/
     color: #bab8bd;
 }
 
@@ -92,7 +85,6 @@ header {
     display: block;
     padding: 3%;
 }
-
 
 .category-card a:hover {
     background-color: #1794ac;
@@ -128,14 +120,9 @@ header {
     padding: 0;
 }
 
-.categories-show-left {
-    /*background-color: #FFFFFF;*/
-}
-
 .title-card {
     background-color: #a1d4e2;
     color: #FFFFFF;
-    /*text-align: center;*/
 }
 
 .title-card a {
@@ -151,15 +138,7 @@ header {
 
 .form-and-list-card {
     background-color: #FFFFFF;
-    /*max-height: 300px;*/
-    /*min-height: 303px;*/
 }
-
-/*@media (max-width: 9999px){*/
-/*    .form-and-list-card {*/
-/*        height: 500px;*/
-/*    }*/
-/*}*/
 
 @media (max-width: 576px){
     .form-and-list-card {
@@ -180,12 +159,6 @@ header {
   padding:0;
 }
 
-/*.no-gutters　> .col,*/
-/*.no-gutters　> [class*="col-"] {*/
-  /*margin:0;*/
-/*  padding:0;*/
-/*}*/
-
 .today-trainings-card {
     font-size: 1.5vmax;
     /*justify-content: center;*/
@@ -195,28 +168,12 @@ header {
     justify-content: center;
 }
 
-/*.today-training span {*/
-/*    margin-right: 10%;*/
-/*}*/
-
 .today-total-card,
 .month-total-card,
 .all-total-card {
     background-color: #FFFFFF;
     font-size: 1.9vmax;
-    /*text-align: center;*/
-    /*vertical-align: bottom;*/
 }
-
-/*.today-total-card {*/
-/*    margin-top: 100px;*/
-/*}*/
-
-/*@media (max-width: 576px){*/
-/*    .today-total-card {*/
-/*        margin-top: 0;*/
-/*    }*/
-/*}*/
 
 .today-total-card p,
 .month-total-card p,
@@ -258,7 +215,6 @@ header {
 
 .new-category-card span {
     float: right;
-    /*padding-right: 30px;*/
 }
 
 .edit-training-btn {
