@@ -18,13 +18,15 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <div class="wrapper">
+      <%= render 'layouts/navbar' %>
 
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
-
-      <%= yield %>
-    </div>  
-    <footer>&copy; 2020 Teruya Sawamura All Right Reserved.</footer>
+      <div class="container pb-5">
+        <%= render 'layouts/flash_messages' %>
+        <%= yield %>
+      </div>
+    
+      <footer>&copy; 2020 Teruya Sawamura All Right Reserved.</footer>
+    </div>
   </body>
 </html>
