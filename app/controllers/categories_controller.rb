@@ -2,28 +2,25 @@ class CategoriesController < ApplicationController
   
   def index
      @categories = Category.all
+    # @category = Category.find(params[:id])
   end
   
   def show
     @category = Category.find(params[:id])
     @training = Training.new
     
-    
-    # @category_a = Category.find(params[:id])
+    # --------Ransack用アクション--------
     @search = @category.trainings.ransack(params[:q])
-
     @search_trainings = 
       # if params[:q].blank?
       #   Training.none.search
       # else  
         @search.result(distinct: true)
       # end
+    # -----------------------------------
     
-    
-    
-
     # --------当日の投稿内容表示--------
-    @trainings = @category.trainings.where(created_at: Time.current.all_day)
+    @trainings = @category.trainings.where(date: Time.current.all_day)
     # ----------------------------------
 
     #--------「xx年xx月xx日」の計算--------
@@ -36,32 +33,36 @@ class CategoriesController < ApplicationController
     #--------------------------------------
     
     # --------本日の合計時間--------
-    @today_total = 0
+    ss = 0
     @trainings.each do |train|
       s = train.time
-      @today_total += s
+      ss += s
     end
-    @today_total
+    @today_total_hour = ss / 60
+    @today_total_min = ss % 60
     # ------------------------------
     
     # --------トータルの合計時間--------
     @total_trainings = @category.trainings.all
-    @all_total = 0
+    uu = 0
     @total_trainings.each do |total_train|
       u = total_train.time
-      @all_total += u
+      uu += u
     end
-    @all_total
+    @all_total_hour = uu / 60
+    @all_total_min = uu % 60
     # ----------------------------------
     
     # --------今月の合計時間--------
     @month_trainings = @category.trainings.where(created_at: Time.current.all_month)
-    @month_total = 0
+    vv = 0
     @month_trainings.each do |month_train|
       v = month_train.time
-      @month_total += v
+      vv += v
     end
-    @month_total
+    @month_total_hour = vv / 60
+    @month_total_min = vv % 60
+    
     # ------------------------------
     # @ttraining = Training.find(params[:id])
     @search_category = Category.find(params[:id])
@@ -116,9 +117,5 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-  
-  # def training_params
-  #   params.permit(:content, :time, :date)
-  # end
-  
+
 end

@@ -1,14 +1,11 @@
-<hi>カテゴリ一覧</hi>
-
-
-<ul>
+<div class="row categories-index">
+    
     <% @categories.each do |category| %>
-        <li><%= link_to category do %><%= category.name %><% end %></li>
-        <li><%= link_to 'EDIT', edit_category_path(category) %></li>
-        <li><%= link_to 'DELETE', category, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></li>
+            <div class="category-card col-sm-8 mx-auto">
+                <%= link_to category, class:"category_name" do %><%= category.name %><% end %>
+            </div>
     <% end %>
-<ul>
-
-
-
-<%= link_to '新規カテゴリの投稿', new_category_path %>
+<div class="new-category col-sm-8 mx-auto">
+    <%= link_to new_category_path do %><i class="fas fa-folder-plus"></i><% end %>
+</div>
+</div>

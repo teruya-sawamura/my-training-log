@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(version: 2020_05_03_101037) do
   create_table "trainings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "date"
     t.string "content"
-    t.float "time"
+    t.integer "time"
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_trainings_on_category_id"
   end
 
+  add_foreign_key "trainings", "categories"
 end

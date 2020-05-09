@@ -1,46 +1,75 @@
-<p><%= @category.name %>の詳細</p>
+<!--<p><%= @category.name %>の詳細</p>-->
 
-<p><%= @training_day %>の積み上げ</p>
+<div class="row categories-show col-sm-12 mx-auto">
+    
+    <div class="categories-show-left col-sm-8">
+        
+        <!--タイトル表示--------------------------------------------------------------->
+        <div class="title-card py-3 py-sm-4 mb-2 pr-4">
+            <h3 class="date-title pl-sm-5 pl-4">
+                <%= @category.name %> Log
+            </h3>
+                <%= link_to edit_category_url do %><i class="fas fa-edit"></i><% end %>
+                <%= link_to @category, method: :delete, data: { confirm: "削除しますか?" } do %><i class="fas fa-trash"></i><% end %>
+        </div>
+        <!------------------------------------------------------------------------->
+        
+        <div class="form-and-list-card py-sm-5 pt-3 pb-4 mb-2">
+        
+            <!--Training入力フォーム--------------------------------------------------->
+            <div class="training-form-card col-sm-11 mx-auto">
+                <h3 class="pl-3 pb-sm-4"> on <%= @training_day %></h3>
+                <%= form_with(model: [@category, @training], local: true) do |f| %>
+                    <%= f.text_field :content, class:"col-7 no-gutters", :placeholder => "Training content" %>
+                    <%= f.number_field :time, step: "10", class:"col-2 no-gutters", :placeholder => "min" %>
+                    <%= f.hidden_field :date, :value => Date.current %>
+                    <%= f.submit 'add', class:"col-2 no-gutters" %>
+                <% end %>
+            </div>
+            <!------------------------------------------------------------------------->
+    
+            <!--今日のTraining一覧----------------------------------------------------->
+            <div class="today-trainings-card col-12 pt-3">
+                <% @trainings.each do |training| %>
+                <div class="today-training py-2 col-sm-10 mx-auto row">
+                    <div class="col-2"><%= link_to edit_category_training_path(@category, training) do %><i class="fas fa-check-square"></i><% end %></div>
+                    <div class="col-7 no-gutters"><%= training.content %></div>
+                    <div class="col-3"><%= training.time %>min</div>
+                </div>
+                <% end %>
+            </div>
+            <!------------------------------------------------------------------------->
+            
+        </div>
 
-<% @trainings.each do |training| %>
-  <ul>
-    <li><%= link_to edit_category_training_path(@category, training) do %><i class="fas fa-check-square"></i><% end %></li>
-    <li><%= training.content %></li>
-    <li><%= training.time %></li>
-  </ul>
-<% end %>
+    </div>
+    
+    <div class="categories-show-right col-sm-4">
+    
+        <!--合計時間カード--------------------------------------------------------->
+        <div class="today-total-card py-2 pl-4 py-sm-3 mb-2">
+            <p>today &nbsp;&nbsp;: <%= @today_total_hour %>h.&nbsp;<%= @today_total_min %>min</p>
+        </div>
+        
+        <div class="month-total-card py-2 pl-4 py-sm-3 mb-2">
+            <p>month : <%= @month_total_hour %>h.&nbsp;<%= @month_total_min %>min</p>
+        </div>
+        
+        <div class="all-total-card py-2 pl-4 py-sm-3 mb-2">
+            <p>all &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <%= @all_total_hour %>h.&nbsp;<%= @all_total_min %>min</p>
+        </div>
+        <!------------------------------------------------------------------------->
+        
+        <!--Training検索フォーム--------------------------------------------------->
+        <div class="seach-form-card pt-2 pb-3 pl-4 pt-sm-3 pb-sm-4 mb-2">
+            <p>Search previous</p>
+            <%= search_form_for @search, url: category_trainings_path(@category.id) do |f| %>
+                <%= f.date_field :date_eq, :placeholder => "20XX-XX-XX", class:"col-9 no-gutters seach-button" %>
+                <%= f.submit "find", class:"col-2 no-gutters" %>
+            <% end %>
+        </div>
+        <!------------------------------------------------------------------------->
+    
+    </div>
 
-
-<%= form_with(model: [@category, @training], local: true) do |f| %>
-  <%= f.label :content, '内容' %>
-  <%= f.text_field :content %>
-  
-  <%= f.label :time, '時間' %>
-  <%= f.number_field :time %>
-  
-  <%= f.hidden_field :date, :value => Date.current %>
-
-  <%= f.submit '新規作成' %>
-<% end %>
-
-
-<p>today_total:<%= @today_total %></p>
-<p>all_total:<%= @all_total %></p>
-<p>month_total:<%= @month_total %></p>
-
-
-
-<%= search_form_for @search, url: category_trainings_path(@category.id)  do |f| %>
-  <%= f.label :date, "日付" %>
-  <%= f.search_field :date_eq, :placeholder => "20XX-XX-XX" %>
-  
-  <%= f.submit "検索" %>
-<% end %>
-
-
-
-
-
-<p><%= link_to 'SEARCH TRAINING', category_trainings_path(@category) %></p>
-<p><%= link_to edit_category_url do %>EDIT<% end %></p>
-<p><%= link_to 'このカテゴリを削除する', @category, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></p>
+</div>

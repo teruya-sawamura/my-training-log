@@ -1,21 +1,31 @@
-<h1>Training#index</h1>
 
-
-<%= search_form_for @search, url: "trainings#index"  do |f| %>
-  <%= f.label :date, "日付" %>
-  <%= f.search_field :date_eq, :placeholder => "20XX-XX-XX" %>
+<div class="categories-new row">
+    <div class="new-category-card col-10 mx-auto py-5 px-1">
+        <h4 class="pb-4">Search training</h4>
+        <div class="new-category-form mx-auto col-12">
+            <%= search_form_for @search, url: "trainings#index"  do |f| %>
+                <%= f.date_field :date_eq, class:"col-sm-7 col-9 no-gutters", :placeholder => "20XX-XX-XX" %>
+                <%= f.submit 'searh', class:"col-sm-2 col-2 no-gutters" %>
+            <% end %>
+        </div>
   
-  <%= f.submit "検索" %>
-<% end %>
+        <div class="today-trainings-card mx-auto col-12 pt-4">
+            <% @search_trainings.each do |search_training| %>
+            <div class="today-training py-2 col-sm-10 mx-auto row">
+                <div class="col-2"><%= link_to edit_category_training_path(@category, search_training) do %><i class="fas fa-check-square"></i><% end %></div>
+                <div class="col-7 no-gutters"><%= search_training.content %></div>
+                <div class="col-3"><%= search_training.time %>min</div>
+            </div>
+            <% end %>
+        </div>
+        
+        <div class="back-link">
+            <%= link_to 'back', category_path(@category), class:"" %>
+        </div>
+    </div>
+</div>
 
 
-
-    <ul>
-      <% @search_trainings.each do |search_training| %>
-        <li><%= search_training.content =%></li>
-        <li><%= search_training.time =%></li>
-      <% end %>
-    </ul>
 
     
 

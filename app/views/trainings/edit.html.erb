@@ -1,15 +1,22 @@
-<h1>Training#edit</h1>
-<p>Find me in app/views/training/edit.html.erb</p>
-
-
-<%= form_with(model: [@category, @training], local: true) do |f| %>
-  <%= f.label :content, '内容' %>
-  <%= f.text_field :content %>
-  
-  <%= f.label :time, '時間' %>
-  <%= f.number_field :time %>
-
-  <%= f.submit 'EDIT' %>
-<% end %>
-
-<%= link_to category_training_path(@category, @training), method: :delete, data: { confirm: "削除しますか?" } do %>DELETE<% end %>
+<div class="categories-new row">
+    <div class="new-category-card col-10 mx-auto py-5 px-sm-5">
+        <h4 class="pb-4">
+            Edit training
+            <span class="pr-sm-4"><%= link_to category_training_path(@category, @training), method: :delete, data: { confirm: "削除しますか?" } do %><i class="fas fa-trash"></i><% end %></span>
+        </h4>
+        <div class="new-category-form mx-auto col-12">
+            <%= form_with(model: [@category, @training], local: true) do |f| %>
+                <%= f.label :content, class:"col-sm-4 col-4 no-gutters" "Content" %>
+                <%= f.text_field :content, class:"col-sm-7 col-7 no-gutters", :placeholder => "Training content" %>
+                <%= f.label :time, class:"col-sm-4 col-4 no-gutters" "Minute" %>
+                <%= f.number_field :time, step: "10", class:"col-sm-7 col-7 no-gutters", :placeholder => "min" %>
+                <%= f.label :date, class:"col-sm-4 col-4 no-gutters" "Date" %>
+                <%= f.date_field :date, class:"col-sm-7 col-7 no-gutters", :placeholder => "20XX-XX-XX" %>
+                <div class="edit-training-btn pr-sm-4"><%= f.submit 'add', class:"col-sm-5 col-11 no-gutters" %></div>
+            <% end %>
+        </div>
+        <div class="back-link">
+            <%= link_to 'back', category_path(@category), class:"" %>
+        </div>
+    </div>
+</div>

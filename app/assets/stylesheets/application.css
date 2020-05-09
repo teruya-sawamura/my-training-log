@@ -1,15 +1,268 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/*共通スタイル------------------------*/
+
+body {
+    background-color: #FAFAFA;
+    color: #565656;
+    /*max-width: 100%;*/
+    /*max-height: 100%;*/
+}
+
+a {
+    color: #565656; 
+}
+
+a:hover {
+    color: #1794ac; 
+    text-decoration: none;
+}
+
+footer {
+    background-color: #bab8bd;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding: 12px 0;
+    color: #FAFAFA;
+    font-size: 1.2vmax;
+}
+
+button, input {
+    overflow: visible;
+}
+
+.alert {
+    margin-top: 10px;
+}
+
+.back-link {
+    text-align: right;
+    padding-right: 40px;
+    margin-top: 20px
+}
+
+/*------------------------------------*/
+
+
+/*navbar----------------------------*/
+
+header {
+    /*margin-bottom: 15%;*/
+}
+
+.navbar-all {
+    background-color: #1794ac;
+}
+
+.navbar-brand {
+    font-family: 'Lucida Console';
+    color: #FAFAFA;
+    font-weight: bold;
+}
+
+.navbar-brand:hover{
+    /*opacity:3;*/
+    color: #bab8bd;
+}
+
+@media (max-width: 576px){
+    button, input {
+    font-size: 12px;
+    }
+}
+
+/*------------------------------------*/
+
+
+/*categories#index--------------------*/
+
+.categories-index {
+    margin-top: 15%;
+}
+
+.category-card {
+    background-color: #a1d4e2;
+    margin-bottom: 5%;
+    padding: 0;
+    text-align: center;
+}
+
+.category-card a {
+    display: block;
+    padding: 3%;
+}
+
+
+.category-card a:hover {
+    background-color: #1794ac;
+    color: #FAFAFA;
+}
+
+@media (max-width: 576px) {
+    .category-card {
+        width: 90%;
+    }
+}
+
+.category_name {
+    font-size: 2.5vmax;
+    color: #FAFAFA;
+}
+
+.new-category {
+    text-align: right;
+}
+
+.fa-folder-plus {
+    font-size: 30px;
+}
+
+/*------------------------------------*/
+
+
+/*categories#sow----------------------*/
+
+.categories-show {
+    margin-top: 7%;
+    padding: 0;
+}
+
+.categories-show-left {
+    /*background-color: #FFFFFF;*/
+}
+
+.title-card {
+    background-color: #a1d4e2;
+    color: #FFFFFF;
+    /*text-align: center;*/
+}
+
+.title-card a {
+    float: right;
+    padding-left: 10px;
+}
+
+.date-title {
+    font-size: 2.1vmax;
+    text-align: left;
+    display: inline;
+}
+
+.form-and-list-card {
+    background-color: #FFFFFF;
+    /*max-height: 300px;*/
+    /*min-height: 303px;*/
+}
+
+/*@media (max-width: 9999px){*/
+/*    .form-and-list-card {*/
+/*        height: 500px;*/
+/*    }*/
+/*}*/
+
+@media (max-width: 576px){
+    .form-and-list-card {
+        height: auto;
+    }
+}
+
+.training-form-card {
+    text-align: center;
+}
+
+.training-form-card h3 {
+    font-size: 2.1vmax;
+    text-align: left;
+}
+
+.no-gutters {
+  padding:0;
+}
+
+/*.no-gutters　> .col,*/
+/*.no-gutters　> [class*="col-"] {*/
+  /*margin:0;*/
+/*  padding:0;*/
+/*}*/
+
+.today-trainings-card {
+    font-size: 1.5vmax;
+    /*justify-content: center;*/
+}
+
+.today-training {
+    justify-content: center;
+}
+
+/*.today-training span {*/
+/*    margin-right: 10%;*/
+/*}*/
+
+.today-total-card,
+.month-total-card,
+.all-total-card {
+    background-color: #FFFFFF;
+    font-size: 1.9vmax;
+    /*text-align: center;*/
+    /*vertical-align: bottom;*/
+}
+
+/*.today-total-card {*/
+/*    margin-top: 100px;*/
+/*}*/
+
+/*@media (max-width: 576px){*/
+/*    .today-total-card {*/
+/*        margin-top: 0;*/
+/*    }*/
+/*}*/
+
+.today-total-card p,
+.month-total-card p,
+.all-total-card p {
+    margin-bottom: 0rem;
+}
+
+.seach-form-card {
+    background-color: #FFFFFF;
+}
+
+.seach-form-card p {
+    font-size: 1.5vmax;
+    margin-bottom: 0;
+}
+
+/*------------------------------------*/
+
+
+/*categories#new----------------------*/
+
+.new-category-card {
+    background-color: #FFFFFF;
+    margin-top: 10%;
+}
+
+.new-category-card h4 {
+    font-size: 1.8vmax;
+    text-align: center;
+}
+
+.new-category-form {
+    text-align: center;
+}
+
+/*------------------------------------*/
+
+/*trainings#edit----------------------*/
+
+.new-category-card span {
+    float: right;
+    /*padding-right: 30px;*/
+}
+
+.edit-training-btn {
+    text-align: right;
+}
+
+/*------------------------------------*/
